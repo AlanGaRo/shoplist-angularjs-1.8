@@ -1,0 +1,48 @@
+<section class="col-md-6 mb-4">
+  <div class="card p-4">
+    <div class="card-body">
+      <h3 class="card-title">Carrito</h3>
+      <hr>
+      <select id="listaProductos" class="form-control" ng-model="lista.productoSeleccionado">
+        <option ng-repeat="producto in lista.productos" ng-value="{{producto.id}}">{{producto.nombre}}</option>
+      </select>
+      <label class="form-label" for="listaProductos">Selecciona el producto</label>
+      <input class="form-control" type="text" ng-model="lista.cantidad" id="cantidadProductos" />
+      <label class="form-label" for="cantidadProductos">Agrega la cantidad de productos</label>
+      <div class="d-flex justify-content-end">
+        <input class="btn btn-light" type="button" value="Agregar" ng-click="lista.addAlCarrito()" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="col-md-6">
+  <div class="table-responsive">
+    <table class="table table-primary">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 5px;"></th>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="producto in lista.carrito">
+          <td scope="row"><button class="btn btn-danger btn-sm" ng-click="lista.deleteOfCarrito(producto.id)"><i class="fas fa-times-circle"></i></button></td>
+          <td scope="row">{{producto.nombre}}</td>
+          <td>$ {{producto.precio}}</td>
+          <td>{{producto.cantidad}}</td>
+          <td>$ {{producto.total}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>$ {{ lista.getTotalCarrito() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
